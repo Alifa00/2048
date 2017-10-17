@@ -2,6 +2,7 @@
 #include <ctime>
 using namespace std;
 int bmp[4][4];
+int score=0;
 void initmas(int u[4]){
     for(int i=0;i<4;i++){u[i]=0;}
 }
@@ -50,7 +51,7 @@ bool  up(int uper[4][4]){
     for(int j=0;j<4;j++){int y[4];initmas(y);int n=0;
         for(int i=0;i<4;i++){if(uper[j][i]!=0){y[n]=uper[j][i];n++;}}
           if(!comp(j,uper,y,'x')){any=true;}
-        for(int z=0;z<4;z++){if((y[z]==y[z+1])&&(y[z]!=0)){y[z]+=y[z+1];y[z+1]=0;any=true;}}
+        for(int z=0;z<4;z++){if((y[z]==y[z+1])&&(y[z]!=0)){y[z]+=y[z+1];y[z+1]=0;any=true;if(uper==bmp){score+=y[z];}}}
 
         for(int w=0;w<3;w++){if(y[w]==0){y[w]=y[w+1];y[w+1]=0;}}
 
@@ -66,7 +67,7 @@ bool down(int uper[4][4]){
     for(int j=0;j<4;j++){int y[4];initmas(y);int n=3;
         for(int i=3;i>-1;i--){if(uper[j][i]!=0){y[n]=uper[j][i];n--;}}
       if(!comp(j,uper,y,'x')){any=true;}
-        for(int z=3;z>0;z--){if((y[z]==y[z-1])&&(y[z]!=0)){y[z]+=y[z-1];y[z-1]=0;any=true;}}
+        for(int z=3;z>0;z--){if((y[z]==y[z-1])&&(y[z]!=0)){y[z]+=y[z-1];y[z-1]=0;any=true;if(uper==bmp){score+=y[z];}}}
 
         for(int w=3;w>0;w--){if(y[w]==0){y[w]=y[w-1];y[w-1]=0;}}
 
@@ -80,7 +81,7 @@ bool left(int uper[4][4]){
     for(int j=0;j<4;j++){int y[4];initmas(y);int n=0;
         for(int i=0;i<4;i++){if(uper[i][j]!=0){y[n]=uper[i][j];n++;}}
            if(!comp(j,uper,y,'y')){any=true;}
-        for(int z=0;z<4;z++){if((y[z]==y[z+1])&&(y[z]!=0)){y[z]+=y[z+1];y[z+1]=0;any=true;}}
+        for(int z=0;z<4;z++){if((y[z]==y[z+1])&&(y[z]!=0)){y[z]+=y[z+1];y[z+1]=0;any=true;if(uper==bmp){score+=y[z];}}}
 
         for(int w=0;w<3;w++){if(y[w]==0){y[w]=y[w+1];y[w+1]=0;}}
 
@@ -95,7 +96,7 @@ bool right(int uper[4][4]){
     for(int j=0;j<4;j++){int y[4];initmas(y);int n=3;
         for(int i=3;i>-1;i--){if(uper[i][j]!=0){y[n]=uper[i][j];n--;}}
           if(!comp(j,uper,y,'y')){any=true;}
-        for(int z=3;z>0;z--){if((y[z]==y[z-1])&&(y[z]!=0)){y[z]+=y[z-1];y[z-1]=0;any=true;}}
+        for(int z=3;z>0;z--){if((y[z]==y[z-1])&&(y[z]!=0)){y[z]+=y[z-1];y[z-1]=0;any=true;if(uper==bmp){score+=y[z];}}}
 
         for(int w=3;w>0;w--){if(y[w]==0){y[w]=y[w-1];y[w-1]=0;}}
 
@@ -119,6 +120,7 @@ void update(int fbmp[4][4]){
         	fbmp[j][i]=bmp[j][i];
         }}
 }
+
 void gameOver(int fbmp[4][4]){
       if(!up(fbmp)){ update(fbmp);
       	if(!down(fbmp)){ update(fbmp);
@@ -140,10 +142,11 @@ long int t=rand();
   	n++;need=true;
   }}}if(need){
   int h=rand()%n;
+  t=t%10000000000;
   
-if ((99<t)&&(t<=9090909000)){
+if ((0<t)&&(t<=9090909090)){
 	bmp[y[h][0]][y[h][1]]=2;
-}else if (t>9090909000){
+}else if (t>9090909090){
 	bmp[y[h][0]][y[h][1]]=4;
 }else if(t==0){}}
 }
@@ -177,10 +180,13 @@ int main() {char com=' ';
         update(vbmp);if(dobav){
         generate();}
         bmpout();
+	cout<<"score: "<<score<<"\n";
         gameOver(vbmp);}
         cin>>com;
+        
         norm=false;
         
     }
+ 
     return 0;
 }
