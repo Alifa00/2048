@@ -212,10 +212,10 @@ void mapout() {
     for (int j = 0; j < 4; j++) {
         for (int i = 0; i < 4; i++) {
             if (map[i][j] == 0) {
-                cout << "*" << "\t";
+                cout << "*" << " ";
                 continue;
             }
-            cout << map[i][j] << "\t";
+            cout << map[i][j] << "\n";
         }
         cout << "\n";
     }
