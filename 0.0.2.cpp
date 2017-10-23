@@ -3,19 +3,19 @@
 using namespace std;
 int map[4][4];
 int point = 0;
-void initmas(int u[4]) {
+void crm(int u[4]) {
     for (int i = 0; i < 4; i++) {
         u[i] = 0;
     }
 }
-void initmas(int u[4][4]) {
+void crm(int u[4][4]) {
     for (int i = 0; i < 4; i++) {
         for (int j = 0; j < 4; j++) {
             u[i][j] = 0;
         }
     }
 }
-bool comp(int a, int a1[4][4], int a2[4],
+bool equal(int a, int a1[4][4], int a2[4],
           char op) {
     bool res = true;
     if (op == 'x') {
@@ -34,7 +34,7 @@ bool comp(int a, int a1[4][4], int a2[4],
     }
     return res;
 }
-int ran2(int p) {
+int rdm(int p) {
     int l = 0;
     int z = rand() % p;
     if (z != 0) {
@@ -46,21 +46,21 @@ int ran2(int p) {
     return l;
 }
 void init() {
-    initmas(map);
+    crm(map);
     srand(time(NULL));
-    map[1][0] = ran2(5);
-    map[1][1] = ran2(5);
-    map[1][2] = ran2(5);
-    map[1][3] = ran2(5);
-    map[2][3] = ran2(5);
-    map[0][3] = ran2(5);
-    map[2][2] = ran2(5);
+    map[1][0] = rdm(5);
+    map[1][1] = rdm(5);
+    map[1][2] = rdm(5);
+    map[1][3] = rdm(5);
+    map[2][3] = rdm(5);
+    map[0][3] = rdm(5);
+    map[2][2] = rdm(5);
 }
 bool up(int uper[4][4]) {
     bool any = false;
     for (int j = 0; j < 4; j++) {
         int y[4];
-        initmas(y);
+        crm(y);
         int n = 0;
         for (int i = 0; i < 4; i++) {
             if (uper[j][i] != 0) {
@@ -68,7 +68,7 @@ bool up(int uper[4][4]) {
                 n++;
             }
         }
-        if (!comp(j, uper, y, 'x')) {
+        if (!equal(j, uper, y, 'x')) {
             any = true;
         }
         for (int z = 0; z < 4; z++) {
@@ -98,7 +98,7 @@ bool down(int uper[4][4]) {
     bool any = false;
     for (int j = 0; j < 4; j++) {
         int y[4];
-        initmas(y);
+        crm(y);
         int n = 3;
         for (int i = 3; i > -1; i--) {
             if (uper[j][i] != 0) {
@@ -106,7 +106,7 @@ bool down(int uper[4][4]) {
                 n--;
             }
         }
-        if (!comp(j, uper, y, 'x')) {
+        if (!equal(j, uper, y, 'x')) {
             any = true;
         }
         for (int z = 3; z > 0; z--) {
@@ -136,7 +136,7 @@ bool left(int uper[4][4]) {
     bool any = false;
     for (int j = 0; j < 4; j++) {
         int y[4];
-        initmas(y);
+        crm(y);
         int n = 0;
         for (int i = 0; i < 4; i++) {
             if (uper[i][j] != 0) {
@@ -144,7 +144,7 @@ bool left(int uper[4][4]) {
                 n++;
             }
         }
-        if (!comp(j, uper, y, 'y')) {
+        if (!equal(j, uper, y, 'y')) {
             any = true;
         }
         for (int z = 0; z < 4; z++) {
@@ -174,7 +174,7 @@ bool right(int uper[4][4]) {
     bool any = false;
     for (int j = 0; j < 4; j++) {
         int y[4];
-        initmas(y);
+        crm(y);
         int n = 3;
         for (int i = 3; i > -1; i--) {
             if (uper[i][j] != 0) {
@@ -182,7 +182,7 @@ bool right(int uper[4][4]) {
                 n--;
             }
         }
-        if (!comp(j, uper, y, 'y')) {
+        if (!equal(j, uper, y, 'y')) {
             any = true;
         }
         for (int z = 3; z > 0; z--) {
@@ -243,7 +243,7 @@ void GameOver(int fmap[4][4]) {
         }
     }
 }
-void generate() {
+void gem() {
     int n = 0;
     int y[16][2];
     bool need = false;
@@ -273,7 +273,7 @@ int main() {
     char com = ' ';
     init();
     int vmap[4][4];
-    initmas(vmap);
+    crm(vmap);
     bool corr = true;
     while (com != 'q') {
         bool add = false;
@@ -298,7 +298,7 @@ int main() {
         if (corr) {
             update(vmap);
             if (add) {
-                generate();
+                gem();
             }
             mapout();
             cout << "Point:" << point <<"\n";
