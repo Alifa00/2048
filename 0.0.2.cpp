@@ -208,7 +208,7 @@ void mapout() {
     for (int j = 0; j < 4; j++) {
         for (int i = 0; i < 4; i++) {
             if (map[i][j] == 0) {
-                cout << "*" << " ";
+                cout << "*" << "\t";
                 continue;
             }
             cout << map[i][j] << "\t";
