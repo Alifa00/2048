@@ -72,8 +72,7 @@ bool up(int uper[4][4]) {
             any = true;
         }
         for (int z = 0; z < 4; z++) {
-            if ((y[z] == y[z + 1]) && (y[z] !=
-                                       0)) {
+            if ((y[z] == y[z + 1]) && (y[z] !=0)) {
                 y[z] += y[z + 1];
                 y[z + 1] = 0;
                 any = true;
@@ -110,8 +109,7 @@ bool down(int uper[4][4]) {
             any = true;
         }
         for (int z = 3; z > 0; z--) {
-            if ((y[z] == y[z - 1]) && (y[z] !=
-                                       0)) {
+            if ((y[z] == y[z - 1]) && (y[z] !=0)) {
                 y[z] += y[z - 1];
                 y[z - 1] = 0;
                 any = true;
@@ -148,8 +146,7 @@ bool left(int uper[4][4]) {
             any = true;
         }
         for (int z = 0; z < 4; z++) {
-            if ((y[z] == y[z + 1]) && (y[z] !=
-                                       0)) {
+            if ((y[z] == y[z + 1]) && (y[z] !=0)) {
                 y[z] += y[z + 1];
                 y[z + 1] = 0;
                 any = true;
@@ -186,8 +183,7 @@ bool right(int uper[4][4]) {
             any = true;
         }
         for (int z = 3; z > 0; z--) {
-            if ((y[z] == y[z - 1]) && (y[z] !=
-                                       0)) {
+            if ((y[z] == y[z - 1]) && (y[z] !=0)) {
                 y[z] += y[z - 1];
                 y[z - 1] = 0;
                 any = true;
@@ -215,7 +211,7 @@ void mapout() {
                 cout << "*" << " ";
                 continue;
             }
-            cout << map[i][j] << "\n";
+            cout << map[i][j] << "\t";
         }
         cout << "\n";
     }
